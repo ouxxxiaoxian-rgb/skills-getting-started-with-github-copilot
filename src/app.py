@@ -62,6 +62,52 @@ def signup_for_activity(activity_name: str, email: str):
     # Get the specific activity
     activity = activities[activity_name]
 
+    # Validate student is not already signed up
+    if email in activity["participants"]:
+        raise HTTPException(status_code=400, detail="Student is already signed up")
+
     # Add student
     activity["participants"].append(email)
     return {"message": f"Signed up {email} for {activity_name}"}
+
+    # Additional activities can be added to the activities dictionary above
+    # Here are 6 new activities to expand the extracurricular offerings:
+
+    activities.update({
+        "Basketball": {
+            "description": "Team sport focusing on basketball skills and competition",
+            "schedule": "Mondays and Wednesdays, 4:00 PM - 5:30 PM",
+            "max_participants": 15,
+            "participants": []
+        },
+        "Tennis": {
+            "description": "Individual and doubles tennis training and matches",
+            "schedule": "Tuesdays and Thursdays, 4:00 PM - 5:00 PM",
+            "max_participants": 10,
+            "participants": []
+        },
+        "Drama Club": {
+            "description": "Stage acting, script writing, and theatrical productions",
+            "schedule": "Wednesdays, 3:30 PM - 5:00 PM",
+            "max_participants": 25,
+            "participants": []
+        },
+        "Digital Art": {
+            "description": "Learn digital design, animation, and graphic design",
+            "schedule": "Saturdays, 10:00 AM - 12:00 PM",
+            "max_participants": 18,
+            "participants": []
+        },
+        "Debate Team": {
+            "description": "Develop public speaking and argumentation skills",
+            "schedule": "Mondays and Thursdays, 3:30 PM - 4:30 PM",
+            "max_participants": 16,
+            "participants": []
+        },
+        "Science Olympiad": {
+            "description": "Compete in science competitions and experiments",
+            "schedule": "Fridays, 4:00 PM - 5:30 PM",
+            "max_participants": 14,
+            "participants": []
+        }
+    })
